@@ -1,0 +1,183 @@
+package acts;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import java.awt.Color;
+import javax.swing.JTextField;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
+import java.awt.Font;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+import java.awt.event.ActionEvent;
+import javax.swing.JComboBox;
+
+public class Lanzadora extends JFrame {
+
+	private JPanel contentPane;
+	private JTextField txtJamon;
+	private JButton btnProcesar;
+	private JTextField txtPollo;
+	private JTextField txtBacalao;
+	private JTextField txtQueso;
+	static long inicio;
+	static long fin;
+
+	public static void main(String[] args) {
+		
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Lanzadora frame = new Lanzadora();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					
+					e.printStackTrace();
+				}
+
+			}
+		});
+	}
+
+	public Lanzadora() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 504, 429);
+		contentPane = new JPanel();
+		contentPane.setBackground(new Color(0, 128, 255));
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+
+		txtJamon = new JTextField();
+		txtJamon.setText("0");
+		txtJamon.setBounds(33, 66, 86, 20);
+		contentPane.add(txtJamon);
+		txtJamon.setColumns(10);
+
+		JLabel lblJamon = new JLabel("Jamon");
+		lblJamon.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblJamon.setBounds(33, 45, 165, 14);
+		contentPane.add(lblJamon);
+
+		btnProcesar = new JButton("PROCESAR");
+		btnProcesar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				inicio= System.nanoTime();
+				JOptionPane.showMessageDialog(null, "Preparando croqueta....");
+				int tipoJamon = Integer.parseInt(getTxtJamon().getText());
+				int tipoPollo = Integer.parseInt(getTxtPollo().getText());
+				int tipoBacalao = Integer.parseInt(getTxtBacalao().getText());
+				int tipoQueso = Integer.parseInt(getTxtQueso().getText());
+				
+			
+
+		       
+		 		ejecutar(tipoJamon, tipoPollo, tipoBacalao, tipoQueso);
+		 		
+
+
+			}
+		});
+        fin = System.nanoTime();
+        
+       double tiempo = fin-inicio;
+
+       System.out.println(tiempo);
+		btnProcesar.setFont(new Font("Tahoma", Font.BOLD, 13));
+		btnProcesar.setBounds(290, 79, 121, 53);
+		contentPane.add(btnProcesar);
+		
+		JLabel lblPollo = new JLabel("Pollo");
+		lblPollo.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblPollo.setBounds(33, 99, 165, 14);
+		contentPane.add(lblPollo);
+		
+		txtPollo = new JTextField();
+		txtPollo.setText("0");
+		txtPollo.setColumns(10);
+		txtPollo.setBounds(33, 124, 86, 20);
+		contentPane.add(txtPollo);
+		
+		JLabel lblBacalao = new JLabel("Bacalao");
+		lblBacalao.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblBacalao.setBounds(33, 155, 165, 14);
+		contentPane.add(lblBacalao);
+		
+		txtBacalao = new JTextField();
+		txtBacalao.setText("0");
+		txtBacalao.setColumns(10);
+		txtBacalao.setBounds(33, 180, 86, 20);
+		contentPane.add(txtBacalao);
+		
+		JLabel Queso = new JLabel("Queso");
+		Queso.setFont(new Font("Tahoma", Font.BOLD, 15));
+		Queso.setBounds(33, 211, 165, 14);
+		contentPane.add(Queso);
+		
+		txtQueso = new JTextField();
+		txtQueso.setText("0");
+		txtQueso.setColumns(10);
+		txtQueso.setBounds(33, 233, 86, 20);
+		contentPane.add(txtQueso);
+	
+	}
+
+
+	public JTextField getTxtNum() {
+		return txtJamon;
+	}
+
+	public JButton getBtnProcesar() {
+		return btnProcesar;
+	}
+
+	public static void ejecutar(int numero1,int numero2,int numero3,int numero4) {
+		try {
+			String clase = "acts.Procesadora";
+			String javaHome = System.getProperty("java.home");
+			String javaBin = javaHome + File.separator + "bin" + File.separator + "java";
+			String classpath = System.getProperty("java.class.path");
+			String className = clase;
+			List<String> command = new ArrayList<>();
+			command.add(javaBin);
+			command.add("-cp");
+			command.add(classpath);
+			command.add(className);
+			command.add(String.valueOf(numero1));
+			command.add(String.valueOf(numero2));
+			command.add(String.valueOf(numero3));
+			command.add(String.valueOf(numero4));
+			ProcessBuilder builder = new ProcessBuilder(command);
+			Process p = builder.inheritIO().start();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+
+		}
+	}
+
+
+	public JTextField getTxtJamon() {
+		return txtJamon;
+	}
+
+	public JTextField getTxtPollo() {
+		return txtPollo;
+	}
+
+	public JTextField getTxtBacalao() {
+		return txtBacalao;
+	}
+
+	public JTextField getTxtQueso() {
+		return txtQueso;
+	}
+}

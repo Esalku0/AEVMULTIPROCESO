@@ -1,0 +1,33 @@
+package acts;
+
+import javax.swing.JButton;
+import javax.swing.JOptionPane;
+
+public class Procesadora {
+
+	public static void main(String[] args) {
+
+		int num1 = Integer.valueOf(args[0]);
+		int num2 = Integer.valueOf(args[1]);
+		int num3 = Integer.valueOf(args[2]);
+		int num4 = Integer.valueOf(args[3]);
+		int total = num1 + num2 + num3 + num4;
+		Croqueta k = new Croqueta(num1, num2, num3, num4);
+		Thread t = null;
+		try {
+			Thread[] hilo = new Thread[total];
+			for (int i = 0; i < total; i++) {
+
+				hilo[i] = new Thread(k);
+				t.start();
+				t.join();
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		JOptionPane.showMessageDialog(null, "TIEMPO TOTAL: " + k.getTiempoTotal());
+	}
+
+}

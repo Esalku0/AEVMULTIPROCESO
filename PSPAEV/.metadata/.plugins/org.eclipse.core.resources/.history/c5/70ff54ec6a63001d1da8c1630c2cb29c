@@ -1,0 +1,75 @@
+package acts;
+
+import java.util.Iterator;
+
+import javax.swing.JButton;
+import javax.swing.JOptionPane;
+
+public class Croqueta implements Runnable {
+
+	private static int tiempoTotal;
+	private String tipo;
+	private int cantidad;
+	private static int contador = 0;
+
+	public Croqueta(int numero1, String tipo) {
+		this.cantidad = numero1;
+		this.tipo = tipo;
+	}
+
+	public void run() {
+		contador++;
+		prepararCroquetilla(cantidad, tipo);
+		contador--;
+	}
+
+	synchronized private void prepararCroquetilla(int cantidad, String tipo) {
+		try {
+			if (tipo == "jamon") {
+				if (cantidad > 0) {
+					Thread.sleep(5000);
+					System.out.println("Croqueta acabada de Jamon!!!");
+					tiempoTotal = 5000;
+				}
+			}
+			if (tipo == "pollo") {
+				if (cantidad > 0) {
+					Thread.sleep(6000);
+					System.out.println("Croqueta acabada de Pollo!!!");
+					tiempoTotal = 6000;
+				}
+			}
+
+			if (tipo == "bacalao") {
+
+				if (cantidad > 0) {
+
+					Thread.sleep(7000);
+					System.out.println("Croqueta acabada de Bacalao!!!");
+					tiempoTotal = 7000;
+
+				}
+			}
+
+			if (tipo == "queso") {
+
+				if (cantidad > 0) {
+
+					Thread.sleep(8000);
+					System.out.println("Croqueta acabada de Queso!!!");
+					tiempoTotal = 8000;
+
+				}
+			}
+
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+
+
+	public static int getContador() {
+		return contador;
+	}
+
+}

@@ -1,0 +1,33 @@
+package acts;
+
+import javax.swing.JButton;
+import javax.swing.JOptionPane;
+
+public class Procesadora {
+
+	public static void main(String[] args) { 
+		
+		String tipo = args[0];
+		int num = Integer.valueOf(args[1]);
+		Croquetas k = new Croquetas(tipo);
+		try {
+			
+		
+		
+		Thread t = null;
+		for (int i = 0; i < num; i++) {
+			t = new Thread(k);
+			t.start();
+			t.join();
+		}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	
+	
+		JOptionPane.showMessageDialog(null, "TIEMPO TOTAL: " + k.getTiempoTotal() );
+	}
+	
+	
+
+}

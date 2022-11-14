@@ -1,0 +1,142 @@
+package acts;
+
+import java.util.Iterator;
+
+import javax.swing.JButton;
+import javax.swing.JOptionPane;
+
+public class Croqueta implements Runnable {
+
+	private int limiteCroquetas = 0;
+
+	private int tiempo;
+	private static int tiempoTotal;
+	private int cantidadTotal;
+	private String tipo;
+	private int cantidad;
+	private int cantidadJamon;
+	private int cantidadPollo;
+	private int cantidadBacalao;
+	private int cantidadQueso;
+	private int contador=0;
+
+	public Croqueta(int numero1, int numero2, int numero3, int numero4) {
+
+		this.cantidadTotal = numero1 + numero2 + numero3 + numero4;
+
+		this.cantidadJamon = numero1;
+
+		this.cantidadPollo = numero2;
+
+		this.cantidadBacalao = numero3;
+
+		this.cantidadQueso = numero4;
+	}
+
+	public Croqueta(int numero1, String tipo) {
+
+		this.cantidad = numero1;
+
+		this.tipo = tipo;
+	}
+
+	public void run() {
+//		realizarCroquetas(cantidadJamon, cantidadPollo, cantidadBacalao, cantidadQueso);
+		contador++;
+		prepararCroquetilla(cantidad, tipo);
+		contador--;
+	}
+
+
+	synchronized private void prepararCroquetilla(int cantidad, String tipo) {
+
+		try {
+			if (tipo == "jamon") {
+
+				if (cantidad > 0) {
+					Thread.sleep(5000);
+					System.out.println("Croqueta acabada de Jamon!!!");
+					tiempoTotal = 5000;
+				}
+			}
+			if (tipo == "pollo") {
+				if (cantidad > 0) {	
+					Thread.sleep(6000);
+					System.out.println("Croqueta acabada de Pollo!!!");
+					tiempoTotal = 6000;
+				}
+			}
+
+			if (tipo == "bacalao") {
+
+				if (cantidad > 0) {
+					
+					Thread.sleep(7000);
+					System.out.println("Croqueta acabada de Bacalao!!!");
+					tiempoTotal = 7000;
+				
+				}
+			}
+
+			if (tipo == "queso") {
+
+				if (cantidad > 0) {
+					
+					Thread.sleep(8000);
+					System.out.println("Croqueta acabada de Queso!!!");
+					tiempoTotal = 8000;
+			
+				}
+			}
+
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+
+//	synchronized private void prepararCroqueta(String tipo) {
+//
+////		do {
+////			try {
+////				Thread.sleep(3000);
+////			} catch (InterruptedException e) {
+////				// TODO Auto-generated catch block
+////				e.printStackTrace();
+////			}
+////			tiempoTotal += 3000;
+////			JOptionPane.showMessageDialog(null, "HAS SUPERADO EL LIMITE, EL PROCESO VA A TARDAR");
+////		} while (limiteCroquetas<100);
+//
+//		if (tipo.equals("jamon")) {
+//			jamon++;
+//			limiteCroquetas++;
+//			tiempo = 5000;
+//			tiempoTotal += 5000;
+//
+//		} else if (tipo.equals("pollo")) {
+//			pollo++;
+//			limiteCroquetas++;
+//			tiempo = 6000;
+//			tiempoTotal += 6000;
+//		} else if (tipo.equals("bacalao")) {
+//			bacalao++;
+//			limiteCroquetas++;
+//			tiempo = 7000;
+//			tiempoTotal += 7000;
+//		} else if (tipo.equals("queso")) {
+//			queso++;
+//			limiteCroquetas++;
+//			tiempo = 8000;
+//			tiempoTotal += 8000;
+//		}
+//	}
+
+	public static int getTiempoTotal() {
+		return tiempoTotal;
+	}
+
+	public int getContador() {
+		return contador;
+	}
+
+}

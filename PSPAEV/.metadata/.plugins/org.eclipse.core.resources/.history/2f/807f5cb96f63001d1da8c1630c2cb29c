@@ -1,0 +1,71 @@
+package acts;
+
+import java.util.ArrayList;
+
+import javax.swing.JButton;
+import javax.swing.JOptionPane;
+
+public class Procesadora {
+
+	public static void main(String[] args) {
+		
+		//Asignamos las cantidades de las croquetas recibiendo los parametros por argumento
+		int num1 = Integer.valueOf(args[0]);
+		int num2 = Integer.valueOf(args[1]);
+		int num3 = Integer.valueOf(args[2]);
+		int num4 = Integer.valueOf(args[3]);
+		//ArrayList<Thread> maximoHilo = new ArrayList<Thread>();
+		int total = num1 + num2 + num3 + num4;
+		//Creamos Arrays de hilos con los tamaños de las croquetas.
+		//EL PRIMER ARRAY SERÁ DE CROQUETA DE JAMON
+		Thread[] hilo1 = new Thread[num1 + 1];
+		//EL PRIMER ARRAY SERÁ DE CROQUETA DE POLLO
+		Thread[] hilo2 = new Thread[num2 + 1];
+		//EL PRIMER ARRAY SERÁ DE CROQUETA DE BACALAO
+		Thread[] hilo3 = new Thread[num3 + 1];
+		//EL PRIMER ARRAY SERÁ DE CROQUETA DE QUESO
+		Thread[] hilo4 = new Thread[num4 + 1];
+
+		try {
+			// ACCEDEMOS A LA PRIMERA SECUENCIA DE HILOS PARA LAS CROQUETAS
+			for (int i = 1; i <= num1; i++) {
+				Croqueta k1 = new Croqueta(i, "jamon");
+				hilo1[i] = new Thread(k1);
+				hilo1[i].start();
+			}
+			// ACCEDEMOS A LA PRIMERA SECUENCIA DE HILOS PARA LAS CROQUETAS
+			for (int i = 1; i <= num2; i++) {
+				Croqueta k2 = new Croqueta(i, "pollo");
+				hilo2[i] = new Thread(k2);
+				hilo2[i].start();
+			}
+			// ACCEDEMOS A LA PRIMERA SECUENCIA DE HILOS PARA LAS CROQUETAS
+			for (int i = 1; i <= num3; i++) {
+				Croqueta k3 = new Croqueta(i, "bacalao");
+				hilo3[i] = new Thread(k3);
+				hilo3[i].start();
+			}
+			// ACCEDEMOS A LA PRIMERA SECUENCIA DE HILOS PARA LAS CROQUETAS
+			for (int i = 1; i <= num4; i++) {
+				Croqueta k4 = new Croqueta(i, "queso");
+				hilo4[i] = new Thread(k4);
+				hilo4[i].start();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void comprobarLimite(int alex) {
+		if (alex == 100) {
+			try {
+				System.out.println("pausita...");
+				Thread.sleep(3000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+
+}

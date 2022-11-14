@@ -1,0 +1,65 @@
+package acts;
+
+import javax.swing.JButton;
+import javax.swing.JOptionPane;
+
+public class Procesadora {
+
+	public static void main(String[] args) {
+
+		int num1 = Integer.valueOf(args[0]);
+		int num2 = Integer.valueOf(args[1]);
+		int num3 = Integer.valueOf(args[2]);
+		int num4 = Integer.valueOf(args[3]);
+		int total = num1 + num2 + num3 + num4;
+		Croqueta k = new Croqueta(num1, num2, num3, num4);
+		Thread t = null;
+		try {
+			Thread[] hilo1 = new Thread[num1];
+			Thread[] hilo2 = new Thread[num2];
+			Thread[] hilo3 = new Thread[num3];
+			Thread[] hilo4 = new Thread[num4];
+			
+			
+			//ACCEDEMOS A LA PRIMERA SECUENCIA DE HILOS PARA LAS CROQUETAS
+			for (int i = 0; i < num1; i++) {
+		
+				hilo1[i] = new Thread(k);
+				t.start();
+				t.join();
+			}
+
+			
+			//ACCEDEMOS A LA PRIMERA SECUENCIA DE HILOS PARA LAS CROQUETAS
+			for (int i = 0; i < num2; i++) {
+		
+				hilo2[i] = new Thread(k);
+				t.start();
+				t.join();
+			}
+			
+			//ACCEDEMOS A LA PRIMERA SECUENCIA DE HILOS PARA LAS CROQUETAS
+			for (int i = 0; i < num3; i++) {
+		
+				hilo3[i] = new Thread(k);
+				t.start();
+				t.join();
+			}
+			
+			//ACCEDEMOS A LA PRIMERA SECUENCIA DE HILOS PARA LAS CROQUETAS
+			for (int i = 0; i < num4; i++) {
+		
+				hilo4[i] = new Thread(k);
+				t.start();
+				t.join();
+			}
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		JOptionPane.showMessageDialog(null, "TIEMPO TOTAL: " + k.getTiempoTotal());
+	}
+
+}

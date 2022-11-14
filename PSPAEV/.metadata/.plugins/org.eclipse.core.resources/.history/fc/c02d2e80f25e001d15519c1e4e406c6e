@@ -1,0 +1,77 @@
+package acts;
+
+import javax.swing.JOptionPane;
+
+public class Procesadora implements Runnable {
+
+	private int limiteCroquetas;
+	private String tipo;
+	private static int tiempo;
+	private static int tiempoTotal;
+	private int jamon;
+	private int pollo;
+	private int queso;
+	private int bacalao;
+
+	public Procesadora(String tipo) {
+		this.tipo = tipo;
+	}
+
+	public void run() {
+		prepararCroqueta(tipo);
+		try {
+			Thread.sleep(tiempo);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+
+		
+		
+ 		JOptionPane.showMessageDialog(null, "Preparando croqueta....");
+	}
+
+	synchronized private void prepararCroqueta(String tipo) {
+
+		if (limiteCroquetas > 100) {
+			if (tipo == "jamon") {
+				jamon++;
+				limiteCroquetas++;
+				tiempo = 5000;
+				tiempoTotal+=5000;
+			} else if (tipo == "pollo") {
+				pollo++;
+				limiteCroquetas++;
+				tiempo = 6000;
+				tiempoTotal+=6000;
+			} else if (tipo == "bacalao") {
+				bacalao++;
+				limiteCroquetas++;
+				tiempo = 7000;
+				tiempoTotal+=7000;
+			} else if (tipo == "queso") {
+				queso++;
+				limiteCroquetas++;
+				tiempo = 8000;
+				tiempoTotal+=8000;
+			}
+
+		} else {
+			try {
+				Thread.sleep(3000);
+				tiempoTotal+=3000;
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	
+	public static void main(String[] args) {
+		
+
+	}
+	
+	
+
+}

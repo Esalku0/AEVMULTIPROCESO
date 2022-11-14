@@ -1,0 +1,59 @@
+package acts;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import java.awt.Color;
+import javax.swing.JTextField;
+import javax.swing.JLabel;
+import java.awt.Font;
+import javax.swing.JButton;
+
+public class Lanzadora extends JFrame {
+
+	private JPanel contentPane;
+	private JTextField txtTipo;
+	private JTextField textField_1;
+	private JButton btnProcesar;
+
+	/**
+	 * Create the frame.
+	 */
+	public Lanzadora() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 504, 243);
+		contentPane = new JPanel();
+		contentPane.setBackground(new Color(0, 128, 255));
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		txtTipo = new JTextField();
+		txtTipo.setBounds(58, 66, 200, 20);
+		contentPane.add(txtTipo);
+		txtTipo.setColumns(10);
+		
+		textField_1 = new JTextField();
+		textField_1.setBounds(58, 123, 86, 20);
+		contentPane.add(textField_1);
+		textField_1.setColumns(10);
+		
+		JLabel lblTipo = new JLabel("Tipo de Croqueta:");
+		lblTipo.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblTipo.setBounds(60, 41, 148, 14);
+		contentPane.add(lblTipo);
+		
+		JLabel lblNumCroqueta = new JLabel("Numero de croquetas:");
+		lblNumCroqueta.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblNumCroqueta.setBounds(58, 98, 165, 14);
+		contentPane.add(lblNumCroqueta);
+		
+		 btnProcesar = new JButton("PROCESAR");
+		btnProcesar.setFont(new Font("Tahoma", Font.BOLD, 13));
+		btnProcesar.setBounds(298, 81, 121, 53);
+		contentPane.add(btnProcesar);
+	}
+}

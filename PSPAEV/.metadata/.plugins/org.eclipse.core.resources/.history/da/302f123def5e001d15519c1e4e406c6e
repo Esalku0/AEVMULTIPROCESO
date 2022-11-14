@@ -1,0 +1,142 @@
+package acts;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import java.awt.Color;
+import javax.swing.JTextField;
+import javax.swing.JLabel;
+import java.awt.Font;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+import java.awt.event.ActionEvent;
+
+public class Lanzadora extends JFrame {
+
+	private JPanel contentPane;
+	private JTextField txtTipo;
+	private JTextField txtNum;
+	private JButton btnProcesar;
+
+
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Lanzadora frame = new Lanzadora();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+	
+	
+	public Lanzadora() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 504, 243);
+		contentPane = new JPanel();
+		contentPane.setBackground(new Color(0, 128, 255));
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		txtTipo = new JTextField();
+		txtTipo.setBounds(58, 66, 200, 20);
+		contentPane.add(txtTipo);
+		txtTipo.setColumns(10);
+		
+		txtNum = new JTextField();
+		txtNum.setBounds(58, 123, 86, 20);
+		contentPane.add(txtNum);
+		txtNum.setColumns(10);
+		
+		JLabel lblTipo = new JLabel("Tipo de Croqueta:");
+		lblTipo.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblTipo.setBounds(60, 41, 148, 14);
+		contentPane.add(lblTipo);
+		
+		JLabel lblNumCroqueta = new JLabel("Numero de croquetas:");
+		lblNumCroqueta.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblNumCroqueta.setBounds(58, 98, 165, 14);
+		contentPane.add(lblNumCroqueta);
+		
+		 btnProcesar = new JButton("PROCESAR");
+		 btnProcesar.addActionListener(new ActionListener() {
+		 	public void actionPerformed(ActionEvent e) {
+		 		
+		 		String tipo = getTxtTipo().getText();
+		 		int num =   Integer.valueOf(getTxtNum().getText());
+		 		
+		 		
+				Procesadora k = new Procesadora();
+				Thread t;
+				for (int i = 0; i < num; i++) {
+					t = new Thread(k);
+					t.setName("Alumno " + (i + 1));
+					t.start();
+				}
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+		// TODO Auto-generated catch block
+					e.printStackTrace();
+				} // Pausa para dejar que acaben todos los threads
+				System.out.println("Total de alitas restantes: " + k.numAlitas);
+		 		
+		 		
+		 		ejecutar(tipo, num);
+		 	}
+		 });
+		btnProcesar.setFont(new Font("Tahoma", Font.BOLD, 13));
+		btnProcesar.setBounds(298, 81, 121, 53);
+		contentPane.add(btnProcesar);
+	}
+
+	public JTextField getTxtTipo() {
+		return txtTipo;
+	}
+
+	public JTextField getTxtNum() {
+		return txtNum;
+	}
+
+	public JButton getBtnProcesar() {
+		return btnProcesar;
+	}
+	
+	
+	
+	public static void ejecutar(String nombre, int numero) {
+		try {
+			String clase = "acts.Procesadora";
+			String javaHome = System.getProperty("java.home");
+			String javaBin = javaHome + File.separator + "bin" + File.separator + "java";
+			String classpath = System.getProperty("java.class.path");
+			String className = clase;
+			List<String> command = new ArrayList<>();
+			command.add(javaBin);
+			command.add("-cp");
+			command.add(classpath);
+			command.add(className);
+			command.add(String.valueOf(nombre));
+			command.add(String.valueOf(numero));
+			ProcessBuilder builder = new ProcessBuilder(command);
+			Process p = builder.inheritIO().start();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+
+		}
+	}
+	
+	
+	
+}

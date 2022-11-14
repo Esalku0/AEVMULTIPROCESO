@@ -1,0 +1,162 @@
+package acts;
+
+import java.util.Iterator;
+
+import javax.swing.JButton;
+import javax.swing.JOptionPane;
+
+public class Croqueta implements Runnable {
+
+	private int limiteCroquetas = 0;
+
+	private int tiempo;
+	private static int tiempoTotal;
+	private int cantidadTotal;
+	private String tipo1;
+	private String tipo2;
+	private String tipo3;
+	private String tipo4;
+	private int cantidadJamon;
+	private int cantidadPollo;
+	private int cantidadBacalao;
+	private int cantidadQueso;
+
+	public Croqueta(int numero1, int numero2, int numero3, int numero4) {
+
+		this.cantidadTotal = numero1 + numero2 + numero3 + numero4;
+		
+		this.cantidadJamon = numero1;
+
+		this.cantidadPollo = numero2;
+
+		this.cantidadBacalao = numero3;
+
+		this.cantidadQueso = numero4;
+	}
+
+	public void run() {
+		realizarCroquetas(cantidadJamon, cantidadPollo, cantidadBacalao, cantidadQueso);
+	}
+
+	synchronized private void realizarCroquetas(int numjamon, int numpollo, int numbacalao, int numqueso) {
+
+		
+		System.out.println(cantidadTotal);
+		
+		
+		try {
+		
+			if (numjamon > 0) {
+
+				for (int i = 1; i <= numjamon; i++) {
+
+					Thread.sleep(5000);
+					System.out.println("Croqueta acabada!!!");
+					tiempoTotal += 5000;
+				}
+			}
+
+			if (numpollo > 0) {
+				for (int i = 1; i <= numpollo; i++) {
+					Thread.sleep(6000);
+					System.out.println("Croqueta acabada!!!");
+					tiempoTotal += 6000;
+				}
+			}
+			if (numbacalao > 0) {
+				for (int i = 1; i <= numbacalao; i++) {
+
+					Thread.sleep(7000);
+
+					System.out.println("Croqueta acabada!!!");
+					tiempoTotal += 7000;
+				}
+			}
+			if (numqueso > 0) {
+				for (int i = 1; i <= numqueso; i++) {
+					Thread.sleep(8000);
+					System.out.println("Croqueta acabada!!!");
+					tiempoTotal += 8000;
+				}
+			}
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		try {
+			System.out.println("MUCHAS CROQUETAS");
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		limiteCroquetas += numjamon;
+		limiteCroquetas += numpollo;
+		limiteCroquetas += numbacalao;
+		limiteCroquetas += numqueso;
+	}
+	synchronized private void realizarCroquetas2(int numjamon, String tipo) {
+
+		
+		System.out.println(cantidadTotal);
+		
+		
+		try {
+		
+			if (numjamon > 0) {
+
+				for (int i = 1; i <= numjamon; i++) {
+
+					Thread.sleep(5000);
+					System.out.println("Croqueta acabada!!!");
+					tiempoTotal += 5000;
+				}
+			}
+
+			if (numpollo > 0) {
+				for (int i = 1; i <= numpollo; i++) {
+					Thread.sleep(6000);
+					System.out.println("Croqueta acabada!!!");
+					tiempoTotal += 6000;
+				}
+			}
+			if (numbacalao > 0) {
+				for (int i = 1; i <= numbacalao; i++) {
+
+					Thread.sleep(7000);
+
+					System.out.println("Croqueta acabada!!!");
+					tiempoTotal += 7000;
+				}
+			}
+			if (numqueso > 0) {
+				for (int i = 1; i <= numqueso; i++) {
+					Thread.sleep(8000);
+					System.out.println("Croqueta acabada!!!");
+					tiempoTotal += 8000;
+				}
+			}
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		try {
+			System.out.println("MUCHAS CROQUETAS");
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		limiteCroquetas += numjamon;
+		limiteCroquetas += numpollo;
+		limiteCroquetas += numbacalao;
+		limiteCroquetas += numqueso;
+	}
+
+	public static int getTiempoTotal() {
+		return tiempoTotal;
+	}
+
+}

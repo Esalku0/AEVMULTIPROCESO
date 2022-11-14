@@ -1,0 +1,73 @@
+package acts;
+
+import javax.swing.JButton;
+import javax.swing.JOptionPane;
+
+public class Procesadora {
+
+	public static void main(String[] args) {
+
+		int num1 = Integer.valueOf(args[0]);
+		int num2 = Integer.valueOf(args[1]);
+		int num3 = Integer.valueOf(args[2]);
+		int num4 = Integer.valueOf(args[3]);
+		int total = num1 + num2 + num3 + num4;
+		Croqueta k = new Croqueta(num1, num2, num3, num4);
+		
+	
+	
+		
+		try {
+			Thread[] hilo1 = new Thread[num1];
+			Thread[] hilo2 = new Thread[num2];
+			Thread[] hilo3 = new Thread[num3];
+			Thread[] hilo4 = new Thread[num4];
+			
+			
+			//ACCEDEMOS A LA PRIMERA SECUENCIA DE HILOS PARA LAS CROQUETAS
+			for (int i = 0; i < num1; i++) {
+				Croqueta k1 = new Croqueta(i, "jamon");
+				Thread t1= new Thread();
+				hilo1[i] = new Thread(k1);
+				t1.start();
+				t1.join();
+			}
+
+			
+			//ACCEDEMOS A LA PRIMERA SECUENCIA DE HILOS PARA LAS CROQUETAS
+			for (int i = 0; i < num2; i++) {
+				Croqueta k2 = new Croqueta(i, "pollo");
+				Thread t2= new Thread();
+				hilo2[i] = new Thread(k2);
+				t2.start();
+				t2.join();
+			}
+			
+			//ACCEDEMOS A LA PRIMERA SECUENCIA DE HILOS PARA LAS CROQUETAS
+			for (int i = 0; i < num3; i++) {
+				Croqueta k3 = new Croqueta(i, "bacalao");
+				Thread t3= new Thread();
+				hilo3[i] = new Thread(k3);
+				t3.start();
+				t3.join();
+			}
+			
+			//ACCEDEMOS A LA PRIMERA SECUENCIA DE HILOS PARA LAS CROQUETAS
+			for (int i = 0; i < num4; i++) {
+				Croqueta k4 = new Croqueta(i,"queso");
+				Thread t4= new Thread();
+				hilo4[i] = new Thread(k4);
+				t4.start();
+				t4.join();
+			}
+			
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		JOptionPane.showMessageDialog(null, "TIEMPO TOTAL: " + k.getTiempoTotal());
+	}
+
+}
