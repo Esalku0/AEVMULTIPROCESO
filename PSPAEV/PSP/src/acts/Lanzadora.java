@@ -49,9 +49,9 @@ public class Lanzadora extends JFrame {
 
 	public Lanzadora() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 373, 346);
+		setBounds(100, 100, 400, 332);
 		contentPane = new JPanel();
-		contentPane.setBackground(new Color(0, 128, 255));
+		contentPane.setBackground(new Color(255, 255, 128));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
@@ -86,7 +86,7 @@ public class Lanzadora extends JFrame {
 		});
 
 		btnProcesar.setFont(new Font("Tahoma", Font.BOLD, 13));
-		btnProcesar.setBounds(186, 137, 121, 53);
+		btnProcesar.setBounds(185, 137, 121, 53);
 		contentPane.add(btnProcesar);
 
 		JLabel lblPollo = new JLabel("Pollo");
@@ -121,6 +121,11 @@ public class Lanzadora extends JFrame {
 		txtQueso.setColumns(10);
 		txtQueso.setBounds(33, 233, 86, 20);
 		contentPane.add(txtQueso);
+		
+		JLabel lblNewLabel = new JLabel("Croqueteria Flash!!");
+		lblNewLabel.setFont(new Font("Verdana", Font.PLAIN, 22));
+		lblNewLabel.setBounds(138, 27, 221, 20);
+		contentPane.add(lblNewLabel);
 
 	}
 

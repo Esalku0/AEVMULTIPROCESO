@@ -1,0 +1,104 @@
+package acts;
+
+import java.util.ArrayList;
+
+import javax.swing.JButton;
+import javax.swing.JOptionPane;
+
+public class Procesadora {
+
+	public static void main(String[] args) {
+
+		// Asignamos las cantidades de las croquetas recibiendo los parametros por
+		// argumento
+		int num1 = Integer.valueOf(args[0]);
+		int num2 = Integer.valueOf(args[1]);
+		int num3 = Integer.valueOf(args[2]);
+		int num4 = Integer.valueOf(args[3]);
+		// ArrayList<Thread> maximoHilo = new ArrayList<Thread>();
+		int total = num1 + num2 + num3 + num4;
+		//
+		//
+		// Creamos Arrays de hilos con los tamaños de las croquetas.
+		//
+		//
+		// HACMEOS UN ARRAY POR ORDEN!!
+		Thread[] hilo1 = new Thread[num1 + 1];
+
+		Thread[] hilo2 = new Thread[num2 + 1];
+
+		Thread[] hilo3 = new Thread[num3 + 1];
+
+		Thread[] hilo4 = new Thread[num4 + 1];
+
+		try {
+			// ACCEDEMOS A LA PRIMERA SECUENCIA DE HILOS PARA LAS CROQUETAS
+			if (num1 % 6 == 0 && num1 >= 6) {
+
+				for (int i = 1; i <= num1; i++) {
+					// Creamos objeto croqueta pasandole el valor de la croqueta
+					Croqueta k1 = new Croqueta(i, "jamon");
+					hilo1[i] = new Thread(k1);
+					hilo1[i].start();
+				}
+			} else {
+				JOptionPane.showMessageDialog(null, "Tiene que ser paquetes de 6 croquetas de Jamon");
+			}
+			if (num2 % 6 == 0 && num2 >= 6) {
+			// ACCEDEMOS A LA SEGUNDA SECUENCIA DE HILOS PARA LAS CROQUETAS
+			for (int i = 1; i <= num2; i++) {
+				// Creamos objeto croqueta pasandole el valor de la croqueta
+				Croqueta k2 = new Croqueta(i, "pollo");
+				hilo2[i] = new Thread(k2);
+				hilo2[i].start();
+			}
+		} else {
+			JOptionPane.showMessageDialog(null, "Tiene que ser paquetes de 6 croquetas de Pollo");
+		}
+			// ACCEDEMOS A LA TERCERA SECUENCIA DE HILOS PARA LAS CROQUETAS
+			if (hilo3.length % 6 == 0 && hilo3.length >= 6) {
+			for (int i = 1; i <= num3; i++) {
+				// Creamos objeto croqueta pasandole el valor de la croqueta
+				Croqueta k3 = new Croqueta(i, "bacalao");
+				hilo3[i] = new Thread(k3);
+				hilo3[i].start();
+			}
+			} else {
+				JOptionPane.showMessageDialog(null, "Tiene que ser paquetes de 6 croquetas de Bacalao");
+			}
+			if (hilo4.length % 6 == 0 && hilo4.length >= 6) {
+			// ACCEDEMOS A LA CUARTA SECUENCIA DE HILOS PARA LAS CROQUETAS
+			for (int i = 1; i <= num4; i++) {
+				// Creamos objeto croqueta pasandole el valor de la croqueta
+				Croqueta k4 = new Croqueta(i, "queso");
+				hilo4[i] = new Thread(k4);
+				hilo4[i].start();
+			}
+		} else {
+			JOptionPane.showMessageDialog(null, "Tiene que ser paquetes de 6 croquetas de Queso");
+		}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * Este metodo nos sirve para comprobar el limite de croquetas para el apartado
+	 * de limitar a 100 croquetas No utilizamos este metodo ya que no sabia como
+	 * implementarlo.
+	 * 
+	 * @param cant Es la cantidad de croquetas actuales en cocinado
+	 */
+	public static void comprobarLimite(int cant) {
+		if (cant == 100) {
+			try {
+				System.out.println("pausita...");
+				Thread.sleep(3000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+
+}
